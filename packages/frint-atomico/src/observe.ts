@@ -3,13 +3,13 @@ import ObserveHandler from 'frint-component-handlers/lib/ObserveHandler';
 
 import AtomicoHandler from './AtomicoHandler';
 
-export default function observe(getProps$) {
+export default (handler) => observe(getProps$) => {
   return function (Component) {
     return {
       name: 'Observed' + Component.name,
       inject: ['app'],
       beforeCreate() {
-        this._handler = composeHandlers(
+        handler = composeHandlers(
           AtomicoHandler,
           ObserveHandler,
           {
@@ -19,19 +19,18 @@ export default function observe(getProps$) {
         );
       },
       data() {
-        return this._handler.getInitialData();
+        return {};
       },
       beforeMount() {
-        this._handler.app = this.app; // context is resolved only now
+        handler.app = this.app; // context is resolved only now
         // Invoked each time the custom element is appended into a document-connected element. 
-        this._handler.connectedCallback();
+        handler.connectedCallback();
       },
       beforeDestroy() {
         // Invoked each time the custom element is disconnected from the document's DOM.
-        this._handler.disconnectedCallback();
+        handler.disconnectedCallback();
       },
-      render(h) { // eslint-disable-line
-        return  {...{props: this.computedProps}} />;
+      render(h) { // eslint-disable-line        
       },
     };
   };
