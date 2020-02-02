@@ -1,0 +1,42 @@
+{
+  "name": "frint-atomico",
+  "version": "0.1.0",
+  "description": "Atomico package for FrintJS",
+  "main": "lib/index.js",
+  "homepage": "https://github.com/kristianmandrup/frint-atomico/tree/master/packages/frint-atomico",
+  "scripts": {
+    "lint": "../../node_modules/.bin/eslint --color '{src,test}/**/*.js'",
+    "transpile": "../../node_modules/.bin/babel src --out-dir lib",
+    "test": "../../node_modules/.bin/mocha --colors --compilers js:babel-register --recursive './src/**/*.spec.js'",
+    "cover:run": "../../node_modules/.bin/nyc --reporter=json --require babel-register ../../node_modules/.bin/mocha --colors --compilers js:babel-register --recursive './src/**/*.spec.js'",
+    "cover:report": "../../node_modules/.bin/nyc report",
+    "cover": "npm run cover:run && npm run cover:report",
+    "dist:lib": "../../node_modules/.bin/webpack --config ./webpack.config.js",
+    "dist:min": "DIST_MIN=1 ../../node_modules/.bin/webpack --config ./webpack.config.js",
+    "dist": "npm run dist:lib && npm run dist:min",
+    "prepublish": "npm run transpile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristianmandrup/frint-atomico.git"
+  },
+  "author": {
+    "name": "Kristian Mandrup",
+    "url": "https://github.com/kristianmandrup"
+  },
+  "keywords": [
+    "frint",
+    "atomico"
+  ],
+  "dependencies": {
+    "frint-component-handlers": "^5.7.2",
+    "frint-component-utils": "^5.7.2"
+  },
+  "devDependencies": {
+    "atomico": "^0.19.0"
+  },
+  "bugs": {
+    "url": "https://github.com/kristianmandrup/frint-atomico/issues"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,13 @@
+{
+  "lerna": "3.2",
+  "packages": ["packages/*"],
+  "version": "0.1.0",
+  "changelog": {
+    "repo": "frintjs/frint-atomico",
+    "labels": {
+      "bug": "Bug fix",
+      "PR": "Pull Requests"
+    },
+    "cacheDir": ".changelog"
+  }
+}

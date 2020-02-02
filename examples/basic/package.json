@@ -1,0 +1,24 @@
+{
+  "name": "frint-atomico-basic-example",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start:server": "live-server build",
+    "start": "npm run build && npm run start:server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "webpack": "^4.41.5"
+  },
+  "dependencies": {
+    "frint": "^5.7.2",
+    "frint-atomico": "^0.1.0",
+    "atomico": "^0.19.0"
+  }
+}
