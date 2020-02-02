@@ -1,28 +1,39 @@
 import getMountableComponent from './getMountableComponent';
 
-const handler: any = (component) => {
-  const getData = (key: string): any {
-      return component[key];
-  }
+const arrToObj = (arr: any[]) => {
+  const keys = arr.filter((item, index) => index % 2 === 0)
+  const values = arr.filter((item, index) => index % 2 === 1)
+  return keys.reduce((acc, key, index) => {
+    acc[key] = values[i]
+    return acc
+  }, {})  
+}
 
-  const setData = (key: string, value: any) {
-    return component[key] = value;
+const attrKeys = (arr: any[]) => {
+  return arr.filter((item, index) => index % 2 === 0)
+ 
+
+// component is a Custom Element, ie. a DOM element
+// See Element attributes - https://developer.mozilla.org/en-US/docs/Web/API/Element/attributes
+// See Working with DOM element attributes: https://css-tricks.com/working-with-attributes-on-dom-elements/
+const handler: any = (component) => {
+  const getKeys = (): string[] => attrKeys(component.attributes)
+
+  const getData = (key: string): any => component.getAttribute(key)
+
+  const setData = (key: string, value: any) =>
+    component.setAttribute(key, value);
   }
   
-  const getProps = () {
-      return Object
-        .keys()
-        .reduce((acc, key) => {
-          return {
-            ...acc,
-            key: component[key],
-          };
-        }, {});
-  }
+  const getProps = () => getKeys()
+    .reduce((acc, key) => {
+      return {
+        ...acc,
+        [key]: getData(key),
+      };
+    }, {});
 
-  const getProp = (key: string) {
-    return component[key];
-  }
+  const getProp = (key: string) => getData(key);
 
   return {
     getData,
